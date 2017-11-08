@@ -1,0 +1,8 @@
+#ignoring target folder
+target
+# ignoring .setting
+.settings
+.classpath
+.project
+# tomcat
+hitado-web/tomcat/work

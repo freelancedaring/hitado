@@ -14,14 +14,14 @@ public class SwitchJstlView extends JstlView {
     public String getUrl() {
         String extensionUrl = super.getUrl();
         extensionUrl = extensionUrl.replaceAll("WEB-INF", "WEB-INF/extensions");
-        InputStream is = getClass().getClassLoader()
-                .getResourceAsStream(extensionUrl);
-        if (is == null) {
-            logger.info("no extension");
-            return super.getUrl();
-        } else {
+        InputStream in = getServletContext().getResourceAsStream(extensionUrl);
+
+        if (in != null) {
             logger.info("found extension at:" + extensionUrl);
             return extensionUrl;
+        } else {
+            logger.info("no extension");
+            return super.getUrl();
         }
     }
 
