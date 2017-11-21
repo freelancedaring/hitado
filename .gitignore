@@ -6,3 +6,4 @@ target
 .project
 # tomcat
 hitado-web/tomcat/work
+hitado-web/tomcat/logs

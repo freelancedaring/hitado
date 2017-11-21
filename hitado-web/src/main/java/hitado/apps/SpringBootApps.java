@@ -3,22 +3,27 @@ package hitado.apps;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import hitado.apps.web.configuration.ViewControllerConfiguration;
-import hitado.apps.web.controller.HelloController;
 
 @SpringBootApplication
-@EnableAutoConfiguration
 @Configuration
 @Import({ ViewControllerConfiguration.class })
-public class SpringBootApps {
+@EnableAutoConfiguration
+public class SpringBootApps extends SpringBootServletInitializer {
 
     public static void main(String... strings) {
+        SpringApplication.run(SpringBootApps.class, strings);
+    }
 
-        SpringApplication.run(HelloController.class);
-
+    @Override
+    protected SpringApplicationBuilder configure(
+            SpringApplicationBuilder application) {
+        return application.sources(SpringBootApps.class);
     }
 
 }

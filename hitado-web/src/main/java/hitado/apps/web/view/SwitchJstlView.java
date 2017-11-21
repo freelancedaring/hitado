@@ -1,19 +1,29 @@
 package hitado.apps.web.view;
 
 import java.io.InputStream;
+import java.util.concurrent.ConcurrentHashMap;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.view.JstlView;
 
 public class SwitchJstlView extends JstlView {
 
-    Logger logger = LoggerFactory.getLogger(SwitchJstlView.class);
+    private static ConcurrentHashMap<String, String> EXTENSION_URL = new ConcurrentHashMap<>();
 
     @Override
     public String getUrl() {
-        String extensionUrl = super.getUrl();
-        extensionUrl = extensionUrl.replaceAll("WEB-INF", "WEB-INF/extensions");
+        String newUrl = "";
+        if (EXTENSION_URL.get(getBeanName()) == null) {
+            newUrl = resolveURL(super.getUrl());
+            EXTENSION_URL.put(getBeanName(), newUrl);
+        } else {
+            newUrl = EXTENSION_URL.get(getBeanName());
+        }
+        return newUrl;
+    }
+
+    protected String resolveURL(String oldUrl) {
+        String extensionUrl = oldUrl.replaceAll("WEB-INF",
+                "WEB-INF/extensions");
         InputStream in = getServletContext().getResourceAsStream(extensionUrl);
 
         if (in != null) {
@@ -21,7 +31,7 @@ public class SwitchJstlView extends JstlView {
             return extensionUrl;
         } else {
             logger.info("no extension");
-            return super.getUrl();
+            return oldUrl;
         }
     }
 
