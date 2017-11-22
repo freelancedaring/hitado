@@ -7,3 +7,16 @@ target
 # tomcat
 hitado-web/tomcat/work
 hitado-web/tomcat/logs
+hitado-web/.settings
+hitado-web/.classpath
+
+hitado-service/.settings
+hitado-service/target
+hitado-service/target-output
+hitado-service/.classpath
+
+hitado-model/.settings
+hitado-model/target
+hitado-model/target-output
+hitado-model/.classpath
+
