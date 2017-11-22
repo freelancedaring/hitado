@@ -1,4 +1,4 @@
-package org.hitado.service;
+package org.hitado.test.service;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
