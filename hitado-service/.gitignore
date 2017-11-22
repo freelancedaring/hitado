@@ -1,0 +1,9 @@
+#ignoring target folder
+target
+# ignoring .setting
+.settings
+.classpath
+.project
+
+/test-output/
+/target
