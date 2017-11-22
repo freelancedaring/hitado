@@ -1,0 +1,10 @@
+#ignoring target folder
+target
+# ignoring .setting
+.settings
+/.settings/*
+.classpath
+.project
+
+/test-output/
+/target
